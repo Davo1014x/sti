@@ -2,82 +2,11 @@
 <html>
 <head>
   <title>Mi aplicación de transporte</title>
-  <style>
-    /* General */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #4CAF50, #2196F3);
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: white;
-    }
-
-    /* Contenedor principal */
-    .container {
-      background-color: rgba(0, 0, 0, 0.8);
-      border-radius: 10px;
-      padding: 20px 30px;
-      width: 100%;
-      max-width: 400px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      text-align: center;
-    }
-
-    /* Estilos del título */
-    h1 {
-      font-size: 24px;
-      margin-bottom: 20px;
-      color: #FFD700;
-    }
-
-    /* Estilos del formulario */
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    label {
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-
-    input, select, button {
-      padding: 10px;
-      border: none;
-      border-radius: 5px;
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    input[type="submit"] {
-      background-color: #4CAF50;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    input[type="submit"]:hover {
-      background-color: #45a049;
-    }
-
-    /* Mensaje de alerta */
-    .alert {
-      margin-top: 15px;
-      font-size: 14px;
-    }
-  </style>
+  <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-  <div class="container">
+  <div class="container" id="registro">
     <h1>Registro de Usuario</h1>
-
-    <!-- Formulario de registro -->
     <form>
       <label for="usuario">Usuario:</label>
       <input type="text" id="usuario" name="usuario" placeholder="Ingresa tu nombre de usuario" required>
@@ -93,29 +22,18 @@
 
       <input type="submit" value="Registrarse">
     </form>
-
-    <!-- Mensajes dinámicos -->
     <div class="alert" id="alerta"></div>
   </div>
 
-  <script>
-    // Evento para manejar el formulario de registro
-    document.querySelector("form").addEventListener("submit", (event) => {
-      event.preventDefault(); // Evitar recarga de la página
+  <div class="container oculto" id="saldo">
+    <h1>Bienvenido, <span id="nombre-usuario"></span></h1>
+    <p>Tu saldo actual es: $<span id="saldo-actual">0.00</span></p>
+    <label for="monto-recarga">Monto a recargar:</label>
+    <input type="number" id="monto-recarga" placeholder="Ingresa el monto">
+    <button id="btn-recargar">Recargar</button>
+    <button id="cerrar-sesion">Cerrar sesión</button>
+  </div>
 
-      const usuario = document.getElementById("usuario").value.trim();
-      const contrasena = document.getElementById("contrasena").value.trim();
-      const metodoPago = document.getElementById("metodo-pago").value;
-      const alerta = document.getElementById("alerta");
-
-      if (usuario && contrasena) {
-        alerta.style.color = "#90EE90"; // Verde claro
-        alerta.textContent = `Usuario registrado con éxito:\n- Usuario: ${usuario}\n- Método de pago: ${metodoPago}`;
-      } else {
-        alerta.style.color = "#FFCCCB"; // Rojo claro
-        alerta.textContent = "Por favor, complete todos los campos del formulario.";
-      }
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
